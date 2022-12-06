@@ -11,14 +11,6 @@ type EqualsTest[I any, E any] struct {
 	Expected E
 }
 
-func NewEqualsTest[I any, E any](name string, input I, expected E) *EqualsTest[I, E] {
-	return &EqualsTest[I, E]{
-		Name:     name,
-		Input:    input,
-		Expected: expected,
-	}
-}
-
 func RunEqualsTests[I any, E any](t *testing.T, testData []EqualsTest[I, E], testFunction func(I) E) {
 	for _, test := range testData {
 		t.Run(test.Name, func(t *testing.T) {
