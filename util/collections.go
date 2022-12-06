@@ -1,5 +1,9 @@
 package util
 
+import (
+	"golang.org/x/exp/constraints"
+)
+
 const NotFound = -1
 
 func FirstIndexMatching[T any](slice []T, predicate func(T) bool) int {
@@ -34,4 +38,20 @@ func DropWhileLast[T any](slice []T, predicate func(T) bool) []T {
 		return slice
 	}
 	return slice[0 : lastNoneMatchingIndex+1]
+}
+
+func Map[T any, R any](slice []T, mapper func(T) R) []R {
+	result := make([]R, len(slice))
+	for _, element := range slice {
+		result = append(result, mapper(element))
+	}
+	return result
+}
+
+func Sum[T constraints.Integer](zeroValue T, slice []T) T {
+	result := zeroValue
+	for _, element := range slice {
+		result += element
+	}
+	return result
 }

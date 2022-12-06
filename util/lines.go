@@ -14,6 +14,10 @@ func EmptyLines() *Lines {
 	return &Lines{[]string{}}
 }
 
+func (l *Lines) Value() []string {
+	return l.lines
+}
+
 func LinesFromString(input string) *Lines {
 	lines := strings.Split(input, "\n")
 	return NewLines(lines)
